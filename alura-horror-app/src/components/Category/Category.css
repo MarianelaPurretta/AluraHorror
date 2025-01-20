@@ -15,6 +15,7 @@
   background-image: url('../../../public/assets/img/background-horror.png');
   background-size: cover;
   background-position: center;
+  height: 400px;
 }
 
 /* PARANORMALURA */
@@ -22,6 +23,7 @@
   background-image: url('../../../public/assets/img/background-paranormalura.png');
   background-size: cover;
   background-position: center;
+  height: 400px;
 }
 
 /* ALURAFOBIA */
@@ -29,16 +31,18 @@
   background-image: url('../../../public/assets/img/background-alurafobia.png');
   background-size: cover;
   background-position: center;
+  height: 400px;
 }
 
 .category-section.recomendado {
   background-image: url('../../../public/assets/img/background-recomendados.png');
   background-size: cover;
   background-position: center;
-  margin-bottom: 50px; /* Espacio adicional para evitar que quede pegada al footer */
+  margin-bottom: 50px; 
+  height: 400px;
 }
 
-/* Deja espacio entre tarjetas: */
+
 .slick-slide {
   display: flex; 
   justify-content: center;
@@ -54,10 +58,10 @@
 }
 
 .category-section h2 {
-  text-align: center; /* Centra horizontalmente el texto */
-  font-size: 2rem; /* Ajusta el tamaño del texto */
-  margin-bottom: 20px; /* Espaciado inferior */
-  color: #fff; /* Color del texto */
+  text-align: center; 
+  font-size: 2rem; 
+  margin-bottom: 20px; 
+  color: #fff; 
 }
 
 

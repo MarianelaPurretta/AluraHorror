@@ -8,10 +8,9 @@ import Button from "../../components/Button/Button";
 const Category = ({ title, videos, onDelete, onEdit }) => {
   const sliderRef = useRef(null);
 
-  // Forzar re-render cuando el componente se monta
   useEffect(() => {
     if (sliderRef.current) {
-      sliderRef.current.slickGoTo(0); // Ajusta la posición del carrusel al inicio
+      sliderRef.current.slickGoTo(0);
     }
   }, [videos]);
 
@@ -37,7 +36,12 @@ const Category = ({ title, videos, onDelete, onEdit }) => {
         {videos
           .filter((video) => !!video.thumbnailUrl)
           .map((video) => (
-            <div key={video.id} className="category-card">
+            <div
+              key={video.id}
+              className="category-card"
+              onClick={() => window.open(video.videoUrl, "_blank")} // Abre el enlace del video
+              style={{ cursor: "pointer" }} // Indica que es clickeable
+            >
               <img
                 src={video.thumbnailUrl}
                 alt={video.name}
@@ -47,13 +51,10 @@ const Category = ({ title, videos, onDelete, onEdit }) => {
                 <h3>{video.name}</h3>
                 <p>{video.description}</p>
                 <div className="buttons">
-                  <div className="buttons">
-                    <div className="buttons">
-                      <Button onClick={() => onEdit(video)}>Editar</Button>
-                      <Button onClick={() => onDelete(video.id)} variant="danger">Borrar</Button>
-                    </div>
-                  </div>
-
+                  <Button onClick={() => onEdit(video)}>Editar</Button>
+                  <Button onClick={() => onDelete(video.id)} variant="danger">
+                    Borrar
+                  </Button>
                 </div>
               </div>
             </div>

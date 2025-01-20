@@ -1,4 +1,4 @@
-// src/services/firebase.js
+
 
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
@@ -14,10 +14,10 @@ const firebaseConfig = {
   measurementId: "G-66QLT8ZFPH"
 };
 
-// Inicializa la aplicación de Firebase
+
 const app = initializeApp(firebaseConfig);
 
-// Obtén una instancia de Firestore
+
 const db = getFirestore(app);
 
 export { db };
