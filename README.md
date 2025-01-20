@@ -24,6 +24,11 @@
 
 ---
 
+##  DUCUMENTACION NOTION
+https://www.notion.so/ALURA-HORROR-181d7fd19c3380e98523cfb63502d302
+
+---
+
 ## ⚙️ Instalación y configuración
 
 ### 1. Clonar el repositorio
@@ -31,3 +36,5 @@
 ```bash
 git clone https://github.com/tu-usuario/alura-horror-app.git
 cd alura-horror-app
+
+
