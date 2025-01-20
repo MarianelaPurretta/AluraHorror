@@ -1,19 +1,27 @@
 // src/components/VideoList/VideoList.jsx
-
 import React, { useEffect, useState } from "react";
 import { db } from "../../services/firebase";
 import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import Category from "../Category/Category";
+import Modal from "react-modal";
+import "./VideoList.css";
 
-const VideoList = () => {
+Modal.setAppElement("#root");
+
+function VideoList() {
   const [videos, setVideos] = useState([]);
+
+  // Para el modal de edición
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState(null);
 
   useEffect(() => {
     const fetchVideos = async () => {
       try {
         const snapshot = await getDocs(collection(db, "videos"));
-        const videoData = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data()
+        const videoData = snapshot.docs.map((docSnap) => ({
+          id: docSnap.id,
+          ...docSnap.data(),
         }));
         setVideos(videoData);
       } catch (error) {
@@ -23,90 +31,157 @@ const VideoList = () => {
     fetchVideos();
   }, []);
 
-  // =============== FUNCIÓN PARA BORRAR ===============
+  // Filtrar los videos por categoría
+  const aluraHorror = videos.filter((v) => v.category === "ALURA HORROR");
+  const paranormalura = videos.filter((v) => v.category === "PARANORMALURA");
+  const alurafobia = videos.filter((v) => v.category === "ALURAFOBIA");
+
+  // Funciones para borrar
   const handleDelete = async (id) => {
     try {
-      // Eliminamos el documento de Firestore
       await deleteDoc(doc(db, "videos", id));
-      // Quitamos el video de la lista local
-      setVideos((prevVideos) => prevVideos.filter((video) => video.id !== id));
+      setVideos((prev) => prev.filter((video) => video.id !== id));
       console.log("Video eliminado con éxito");
     } catch (error) {
       console.error("Error al eliminar el video:", error);
     }
   };
 
-  // =============== FUNCIÓN PARA EDITAR ===============
-  const handleEdit = async (video) => {
+  // Funciones para editar
+  const openEditModal = (video) => {
+    setCurrentVideo(video);
+    setIsModalOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setCurrentVideo(null);
+    setIsModalOpen(false);
+  };
+
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    if (!currentVideo) return;
+
     try {
-      // Pedimos un nuevo nombre y descripción solo como ejemplo simple
-      const nuevoNombre = prompt("Nuevo nombre del video:", video.name);
-      if (nuevoNombre === null) return; // Si cancelan el prompt, salimos
-
-      const nuevaDescripcion = prompt("Nueva descripción:", video.description);
-      if (nuevaDescripcion === null) return;
-
-      // Actualizamos el documento en Firestore
-      await updateDoc(doc(db, "videos", video.id), {
-        name: nuevoNombre,
-        description: nuevaDescripcion
+      const { id, name, description, videoUrl, thumbnailUrl } = currentVideo;
+      // Actualizamos el documento en Firestore con los campos
+      await updateDoc(doc(db, "videos", id), {
+        name,
+        description,
+        videoUrl,
+        thumbnailUrl,
       });
 
-      // Actualizamos la lista local sin recargar toda la página
-      setVideos((prevVideos) =>
-        prevVideos.map((v) => {
-          if (v.id === video.id) {
-            return {
-              ...v,
-              name: nuevoNombre,
-              description: nuevaDescripcion
-            };
-          }
-          return v;
-        })
+      // Actualiza la lista local
+      setVideos((prev) =>
+        prev.map((vid) =>
+          vid.id === id
+            ? { ...vid, name, description, videoUrl, thumbnailUrl }
+            : vid
+        )
       );
       console.log("Video editado con éxito");
+      closeEditModal();
     } catch (error) {
       console.error("Error al editar el video:", error);
     }
   };
 
   return (
-    <div>
-      <h2>Lista de Videos</h2>
-      {videos.length === 0 && <p>No hay videos todavía.</p>}
-      {videos.map((video) => (
-        <div key={video.id} style={styles.card}>
-          <h3>{video.name}</h3>
-          <p>{video.description}</p>
-          <img src={video.thumbnailUrl} alt={video.name} style={styles.image} />
-          <br />
-          <a href={video.videoUrl} target="_blank" rel="noopener noreferrer">
-            Ver Video
-          </a>
-          <br /><br />
-          {/* Botones de Editar y Borrar */}
-          <button onClick={() => handleEdit(video)}>Editar</button>
-          <button onClick={() => handleDelete(video.id)}>Borrar</button>
-        </div>
-      ))}
+    <div className="video-list-container">
+      <h1>Videos por Categoría</h1>
+
+      <Category
+        title="ALURA HORROR"
+        videos={aluraHorror}
+        onDelete={handleDelete}
+        onEdit={openEditModal}
+      />
+      <Category
+        title="PARANORMALURA"
+        videos={paranormalura}
+        onDelete={handleDelete}
+        onEdit={openEditModal}
+      />
+      <Category
+        title="ALURAFOBIA"
+        videos={alurafobia}
+        onDelete={handleDelete}
+        onEdit={openEditModal}
+      />
+
+      {/* Modal para editar (centrado en la pantalla) */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeEditModal}
+        contentLabel="Editar Video"
+        className="edit-modal"
+        overlayClassName="edit-overlay"
+      >
+        <h2>Editar Video</h2>
+        {currentVideo && (
+          <form onSubmit={handleEditSubmit} className="edit-form">
+            {/* Nombre */}
+            <label>Nombre:</label>
+            <input
+              type="text"
+              value={currentVideo.name}
+              onChange={(e) =>
+                setCurrentVideo({ ...currentVideo, name: e.target.value })
+              }
+              required
+            />
+
+            {/* Descripción */}
+            <label>Descripción:</label>
+            <textarea
+              value={currentVideo.description}
+              onChange={(e) =>
+                setCurrentVideo({
+                  ...currentVideo,
+                  description: e.target.value,
+                })
+              }
+              required
+            />
+
+            {/* Link al video (videoUrl) */}
+            <label>URL del Video:</label>
+            <input
+              type="url"
+              value={currentVideo.videoUrl || ""}
+              onChange={(e) =>
+                setCurrentVideo({
+                  ...currentVideo,
+                  videoUrl: e.target.value,
+                })
+              }
+            />
+
+            {/* Imagen (thumbnailUrl) */}
+            <label>URL de la Imagen:</label>
+            <input
+              type="url"
+              value={currentVideo.thumbnailUrl || ""}
+              onChange={(e) =>
+                setCurrentVideo({
+                  ...currentVideo,
+                  thumbnailUrl: e.target.value,
+                })
+              }
+            />
+
+            <div className="modal-buttons">
+              <button type="submit">Guardar</button>
+              <button type="button" onClick={closeEditModal}>
+                Cancelar
+              </button>
+            </div>
+          </form>
+        )}
+      </Modal>
     </div>
   );
-};
-
-// Estilos rápidos en línea (opcional)
-const styles = {
-  card: {
-    border: "1px solid #ddd",
-    margin: "10px 0",
-    padding: "10px",
-    borderRadius: "4px"
-  },
-  image: {
-    maxWidth: "300px",
-    display: "block",
-    marginTop: "10px"
-  }
-};
+}
 
 export default VideoList;

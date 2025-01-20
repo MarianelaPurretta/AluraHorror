@@ -1,7 +1,7 @@
 // src/pages/UploadVideo.jsx
 
 import React, { useState } from "react";
-import { db } from "../services/firebase";  // Importa la referencia de la base de datos
+import { db } from "../../services/firebase";  // Importa la referencia de la base de datos
 import { collection, addDoc } from "firebase/firestore";
 
 const UploadVideo = () => {

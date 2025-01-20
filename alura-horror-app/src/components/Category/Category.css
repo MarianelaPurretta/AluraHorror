@@ -1,0 +1,49 @@
+/* Category.css */
+
+.category-section {
+  max-width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+/* Deja espacio entre tarjetas: */
+.slick-slide {
+  display: flex; /* Asegura que las tarjetas no se acumulen verticalmente */
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px; /* Espaciado horizontal entre tarjetas */
+  box-sizing: border-box;
+}
+
+.slick-track {
+  display: flex !important;
+  align-items: center;
+}
+
+.category-card {
+  width: 220px;
+  height: 220px;
+  /* no margin aquí si ya usas padding en .slick-slide */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}

@@ -1,0 +1,67 @@
+// src/components/Category/Category.jsx
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./Category.css";
+
+const Category = ({ title, videos, onDelete, onEdit }) => {
+  // Configuración del carrusel
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    rows: 1, // Solo una fila en el carrusel
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: { slidesToShow: 3, slidesToScroll: 3 },
+      },
+      {
+        breakpoint: 768,
+        settings: { slidesToShow: 2, slidesToScroll: 2 },
+      },
+      {
+        breakpoint: 480,
+        settings: { slidesToShow: 1, slidesToScroll: 1 },
+      },
+    ],
+  };
+  
+  
+
+  return (
+    <section className="category-section">
+      <h2>{title}</h2>
+      {videos.length === 0 && <p>No hay videos en esta categoría.</p>}
+
+      <Slider {...settings}>
+  {videos.map((video) => {
+    console.log("thumbnailUrl:", video.thumbnailUrl);
+    return (
+      <div key={video.id} className="category-card">
+        <img 
+          src={video.thumbnailUrl} 
+          alt={video.name} 
+          style={{ width: "100%", height: "auto" }} 
+        />
+        <div className="card-content">
+          <h3>{video.name}</h3>
+          <p>{video.description}</p>
+          <div className="buttons">
+            <button onClick={() => onEdit(video)}>Editar</button>
+            <button onClick={() => onDelete(video.id)}>Borrar</button>
+          </div>
+        </div>
+      </div>
+    );
+  })}
+</Slider>
+
+    </section>
+  );
+};
+
+export default Category;
