@@ -1,34 +1,40 @@
-![Logo de AluraFlix](./src/assets/img/logo.svg)  
+# Alura Horror - Plataforma de Videos 🎥👻
 
-<hr>  
+**Alura Horror** es una plataforma web diseñada para los amantes del terror. Los usuarios pueden explorar videos categorizados como *ALURA HORROR*, *PARANORMALURA*, *ALURAFOBIA*, y *RECOMENDADO*. La aplicación utiliza Firebase Firestore como base de datos para almacenar y gestionar videos.
 
-![Badge en Desarollo](https://img.shields.io/badge/Estado-En%20desarrollo-green)
-![GitHub estrellas](https://img.shields.io/github/stars/zidjian?style=social)  
-### Índice  
+---
 
-- [Descripción del proyecto](#Descripción-del-proyecto) 
-- [Funcionalidades del proyecto](#Funcionalidades-del-proyecto)  
-- [Acceso al proyecto](#Acceso-al-proyecto)  
-- [Tecnologías utilizadas](#Tecnologías-utilizadas)  
-- [Autores](#Autores)  
-## Descripción del proyecto  
+## 🚀 Características
 
-AluraFlix es un Reto del programa de Oracle Next Education y Alura Latan. El cual consistio en crear una applicación web que sirva de repositorio de videos de youtube, en el cual dichos videos estarán clasificados por categorías. 
-![Mockup de AluraFlix](./src/assets/img/previsualizaci%C3%B3n.png)   
-## Funcionalidades del proyecto 
-- `Funcionalidad 1:`: Listado, registro, actualización y elimnación de categorias
-- `Funcionalidad 1:`: Listado, registro, actualización y elimnación de videos 
-## Acceso al proyecto
-[Demo](https://aluraflix-phi-five.vercel.app/)
-## Tecnologías utilizadas
-- React
-- Swiper
-- Styled components
-- Yup
-- Formik
-- Material UI
-- Axios
-- X Data Grid
-## Autores
-| [<img src="https://www.github.com/zidjian.png" width=115><br><sub>Waldir Maidana </sub>](https://github.com/zidjian) |
-| :---: |
+- **Página principal**: Explora videos organizados en categorías mediante carruseles interactivos.
+- **Subida de videos**: Agrega nuevos videos proporcionando título, descripción, URL, categoría e imagen de vista previa.
+- **Gestión de videos**: Edita o elimina videos directamente desde la interfaz.
+- **Responsive**: Diseño adaptado para dispositivos móviles, tablets y escritorios.
+- **Efectos visuales**: Interfaz inmersiva con imágenes de fondo y transiciones suaves.
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+- **React**: Framework principal para la construcción de la interfaz.
+- **React Router**: Para la navegación entre las páginas de la aplicación.
+- **Firebase Firestore**: Base de datos NoSQL para el almacenamiento y gestión de videos.
+- **CSS**: Estilización personalizada para una experiencia de usuario atractiva.
+- **Slick Carousel**: Carruseles interactivos para las categorías de videos.
+
+---
+
+##  DUCUMENTACION NOTION
+https://www.notion.so/ALURA-HORROR-181d7fd19c3380e98523cfb63502d302
+
+---
+
+## ⚙️ Instalación y configuración
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/tu-usuario/alura-horror-app.git
+cd alura-horror-app
+
+
