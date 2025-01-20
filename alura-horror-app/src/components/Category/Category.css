@@ -32,7 +32,7 @@
 }
 
 .category-section.recomendado {
-  background-image: url('../../../public/assets/img/background-horror.png');
+  background-image: url('../../../public/assets/img/background-recomendados.png');
   background-size: cover;
   background-position: center;
   margin-bottom: 50px; /* Espacio adicional para evitar que quede pegada al footer */

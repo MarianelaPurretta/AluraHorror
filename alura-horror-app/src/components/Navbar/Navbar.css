@@ -1,15 +1,17 @@
 /* src/components/Navbar/Navbar.css */
 
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  position: sticky;
+  position: fixed; /* Fijo para que siempre esté visible */
   top: 0;
-  z-index: 100;
+  left: 0;
+  width: 100%;
+  z-index: 10; 
+  background-color: rgba(0, 0, 0, 0.8); 
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
 }
 
 .navbar-logo {
@@ -19,5 +21,6 @@
   
   .navbar-buttons {
     display: flex;
-    gap: 15px;
+    gap: 5px;
+    margin-right: 40px;
   }

@@ -6,8 +6,10 @@ const Banner = ({ recommendedVideo }) => {
   return (
     <div className="banner">
       <div className="banner-content">
-        <h1>Bienvenidos a la Plataforma de Videos</h1>
-        <p>¡Descubre los mejores videos de terror y más!</p>
+        <h1>Sumérgete en la Oscuridad
+
+        </h1>
+        <p>Atrévete a explorar los videos más aterradores y perturbadores. Historias que no te dejarán dormir, secretos que nunca debieron ser revelados… ¿Te atreves a entrar?</p>
       </div>
 
       {recommendedVideo && (
