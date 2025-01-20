@@ -1,24 +1,23 @@
-// src/App.js
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import VideoList from "./components/VideoList/VideoList"; 
+import HomePage from "./components/HomePage/HomePage"; // Reutiliza el componente HomePage
 import UploadVideo from "./pages/UploadVideo/UploadVideo";
 
 function App() {
   return (
     <Router>
-      {/* Navbar y Footer siempre visibles */}
+      {/* Navbar siempre visible */}
       <Navbar />
-      <Routes>
-        {/* Página principal: muestra VideoList */}
-        <Route path="/" element={<VideoList />} />
 
-        {/* Nueva página: UploadVideo */}
-        <Route path="/upload" element={<UploadVideo />} />
+      {/* Sistema de rutas */}
+      <Routes>
+        <Route path="/" element={<HomePage />} /> {/* Página principal */}
+        <Route path="/upload" element={<UploadVideo />} /> {/* Agregar video */}
       </Routes>
+
+      {/* Footer siempre visible */}
       <Footer />
     </Router>
   );

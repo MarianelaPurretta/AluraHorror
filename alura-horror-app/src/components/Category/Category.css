@@ -4,14 +4,38 @@
   max-width: 90%;
   margin: 0 auto;
   margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+}
+
+/* ALURA HORROR */
+.category-section.alura-horror {
+  background-image: url('../../../public/assets/img/background-horror.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* PARANORMALURA */
+.category-section.paranormalura {
+  background-image: url('../../../public/assets/img/background-paranormalura.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* ALURAFOBIA */
+.category-section.alurafobia {
+  background-image: url('../../../public/assets/img/background-alurafobia.png');
+  background-size: cover;
+  background-position: center;
 }
 
 /* Deja espacio entre tarjetas: */
 .slick-slide {
-  display: flex; /* Asegura que las tarjetas no se acumulen verticalmente */
+  display: flex; 
   justify-content: center;
   align-items: center;
-  padding: 0 10px; /* Espaciado horizontal entre tarjetas */
+  padding: 0 10px; 
   box-sizing: border-box;
 }
 
@@ -23,7 +47,6 @@
 .category-card {
   width: 220px;
   height: 220px;
-  /* no margin aquí si ya usas padding en .slick-slide */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

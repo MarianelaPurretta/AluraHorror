@@ -29,38 +29,36 @@ const Category = ({ title, videos, onDelete, onEdit }) => {
       },
     ],
   };
-  
-  
+
+
 
   return (
-    <section className="category-section">
+    <section className={`category-section ${title.replace(/\s+/g, '-').toLowerCase()}`}>
       <h2>{title}</h2>
       {videos.length === 0 && <p>No hay videos en esta categoría.</p>}
-
       <Slider {...settings}>
-  {videos.map((video) => {
-    console.log("thumbnailUrl:", video.thumbnailUrl);
-    return (
-      <div key={video.id} className="category-card">
-        <img 
-          src={video.thumbnailUrl} 
-          alt={video.name} 
-          style={{ width: "100%", height: "auto" }} 
-        />
-        <div className="card-content">
-          <h3>{video.name}</h3>
-          <p>{video.description}</p>
-          <div className="buttons">
-            <button onClick={() => onEdit(video)}>Editar</button>
-            <button onClick={() => onDelete(video.id)}>Borrar</button>
-          </div>
-        </div>
-      </div>
-    );
-  })}
-</Slider>
-
+        {videos
+          .filter((video) => !!video.thumbnailUrl)
+          .map((video) => (
+            <div key={video.id} className="category-card">
+              <img
+                src={video.thumbnailUrl}
+                alt={video.name}
+                style={{ width: "100%", height: "220px", objectFit: "cover" }}
+              />
+              <div className="card-content">
+                <h3>{video.name}</h3>
+                <p>{video.description}</p>
+                <div className="buttons">
+                  <button onClick={() => onEdit(video)}>Editar</button>
+                  <button onClick={() => onDelete(video.id)}>Borrar</button>
+                </div>
+              </div>
+            </div>
+          ))}
+      </Slider>
     </section>
+
   );
 };
 

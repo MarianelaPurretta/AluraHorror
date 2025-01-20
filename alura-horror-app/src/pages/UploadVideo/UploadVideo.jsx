@@ -24,7 +24,7 @@ const UploadVideo = () => {
         thumbnailUrl,
       });
       console.log("Video agregado con éxito");
-      
+
       // Limpiar el formulario
       setName("");
       setDescription("");
@@ -49,7 +49,7 @@ const UploadVideo = () => {
             required
           />
         </div>
-        
+
         <div>
           <label>Descripción:</label>
           <input
@@ -59,7 +59,7 @@ const UploadVideo = () => {
             required
           />
         </div>
-        
+
         <div>
           <label>URL del video:</label>
           <input
@@ -69,7 +69,7 @@ const UploadVideo = () => {
             required
           />
         </div>
-        
+
         <div>
           <label>Categoría:</label>
           <select
@@ -81,9 +81,11 @@ const UploadVideo = () => {
             <option value="ALURA HORROR">ALURA HORROR</option>
             <option value="PARANORMALURA">PARANORMALURA</option>
             <option value="ALURAFOBIA">ALURAFOBIA</option>
+            <option value="RECOMENDADO">RECOMENDADO</option> {/* Nueva categoría */}
           </select>
         </div>
-        
+
+
         <div>
           <label>URL de la imagen:</label>
           <input
@@ -93,7 +95,7 @@ const UploadVideo = () => {
             required
           />
         </div>
-        
+
         <button type="submit">Subir Video</button>
       </form>
     </div>

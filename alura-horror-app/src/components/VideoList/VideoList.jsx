@@ -35,6 +35,7 @@ function VideoList() {
   const aluraHorror = videos.filter((v) => v.category === "ALURA HORROR");
   const paranormalura = videos.filter((v) => v.category === "PARANORMALURA");
   const alurafobia = videos.filter((v) => v.category === "ALURAFOBIA");
+  const recomendado = videos.filter((v) => v.category === "RECOMENDADO"); // Nueva categoría
 
   // Funciones para borrar
   const handleDelete = async (id) => {
@@ -91,18 +92,23 @@ function VideoList() {
     <div className="video-list-container">
       <h1>Videos por Categoría</h1>
 
+      {/* Carrusel de ALURA HORROR */}
       <Category
         title="ALURA HORROR"
         videos={aluraHorror}
         onDelete={handleDelete}
         onEdit={openEditModal}
       />
+
+      {/* Carrusel de PARANORMALURA */}
       <Category
         title="PARANORMALURA"
         videos={paranormalura}
         onDelete={handleDelete}
         onEdit={openEditModal}
       />
+
+      {/* Carrusel de ALURAFOBIA */}
       <Category
         title="ALURAFOBIA"
         videos={alurafobia}
@@ -110,7 +116,15 @@ function VideoList() {
         onEdit={openEditModal}
       />
 
-      {/* Modal para editar (centrado en la pantalla) */}
+      {/* Carrusel de RECOMENDADO */}
+      <Category
+        title="RECOMENDADO"
+        videos={recomendado} // Videos de la categoría RECOMENDADO
+        onDelete={handleDelete}
+        onEdit={openEditModal}
+      />
+
+      {/* Modal para editar videos */}
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeEditModal}
@@ -145,7 +159,7 @@ function VideoList() {
               required
             />
 
-            {/* Link al video (videoUrl) */}
+            {/* URL del Video */}
             <label>URL del Video:</label>
             <input
               type="url"
