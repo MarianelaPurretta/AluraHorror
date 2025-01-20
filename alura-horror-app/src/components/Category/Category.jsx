@@ -33,32 +33,37 @@ const Category = ({ title, videos, onDelete, onEdit }) => {
       <h2>{title}</h2>
       {videos.length === 0 && <p>No hay videos en esta categoría.</p>}
       <Slider {...settings} ref={sliderRef}>
-        {videos
-          .filter((video) => !!video.thumbnailUrl)
-          .map((video) => (
-            <div
-              key={video.id}
-              className="category-card"
-              onClick={() => window.open(video.videoUrl, "_blank")} // Abre el enlace del video
-              style={{ cursor: "pointer" }} // Indica que es clickeable
-            >
-              <img
-                src={video.thumbnailUrl}
-                alt={video.name}
-                style={{ width: "100%", height: "220px", objectFit: "cover" }}
-              />
-              <div className="card-content">
-                <h3>{video.name}</h3>
-                <p>{video.description}</p>
-                <div className="buttons">
-                  <Button onClick={() => onEdit(video)}>Editar</Button>
-                  <Button onClick={() => onDelete(video.id)} variant="danger">
-                    Borrar
-                  </Button>
-                </div>
+        {videos.map((video) => (
+          <div key={video.id} className="category-card">
+            {/* Imagen del video */}
+            <img
+              src={video.thumbnailUrl}
+              alt={video.name}
+              style={{ width: "100%", height: "220px", objectFit: "cover" }}
+            />
+
+            {/* Contenido de la tarjeta */}
+            <div className="card-content">
+              <h3>{video.name}</h3>
+              <p>{video.description}</p>
+              <div className="buttons">
+                {/* Botón para ver el video */}
+                <Button
+                  variant="primary"
+                  onClick={() => window.open(video.videoUrl, "_blank")}
+                >
+                  Ver Video
+                </Button>
+
+                {/* Botones de editar y borrar */}
+                <Button onClick={() => onEdit(video)}>Editar</Button>
+                <Button onClick={() => onDelete(video.id)} variant="danger">
+                  Borrar
+                </Button>
               </div>
             </div>
-          ))}
+          </div>
+        ))}
       </Slider>
     </section>
   );
