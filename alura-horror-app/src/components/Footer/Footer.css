@@ -1,9 +1,30 @@
 .footer {
+    background-color: #030303da; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
     text-align: center;
-    background-color: #1a1a1a;
-    color: #fff;
-    padding: 10px 0;
-    position: fixed;
+    padding: 20px 10px;
+    position: fixed; /* Siempre al final de la pantalla */
     bottom: 0;
+    left: 0;
     width: 100%;
-}
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .footer-logo {
+    width: 200px; /* Ajusta según el tamaño necesario */
+    height: auto;
+  }
+  
+  .footer-copyright {
+    font-size: 14px;
+    margin: 0;
+  }
+  

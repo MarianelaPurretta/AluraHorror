@@ -1,17 +1,21 @@
 // src/components/Navbar/Navbar.jsx
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Button from "../Button/Button";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const navigate = useNavigate(); // Hook para navegar entre rutas
+
   return (
     <nav className="navbar">
-      <div className="navbar-logo">
-      <img src="/assets/logos/logo-AH.png" alt="Logo" />
-      </div>
-      <div className="navbar-links">
-        <Link to="/">Lista de Videos</Link>
-        <Link to="/upload">Agregar Video</Link>
+      {/* Logo de la aplicación */}
+      <img src="/assets/logos/logo-AH.png" alt="Logo" className="navbar-logo" />
+
+      {/* Botones de navegación */}
+      <div className="navbar-buttons">
+        <Button onClick={() => navigate("/")}>Inicio</Button>
+        <Button onClick={() => navigate("/upload")}>Subir Video</Button>
       </div>
     </nav>
   );

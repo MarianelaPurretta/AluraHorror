@@ -1,55 +1,82 @@
 /* src/components/VideoList/VideoList.css */
 
 .video-list-container {
-    margin: 20px;
-  }
-  
-  /* Overlay - fondo oscuro */
-  .edit-overlay {
-    background-color: rgba(0, 0, 0, 0.7);
-    position: fixed; /* Ocupa toda la ventana */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-  
-  /* Modal centrado */
-  .edit-modal {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px;
-    margin: 0 auto; /* Centrado horizontal */
-    position: relative;
-    top: 50%;       /* Centrado vertical */
-    transform: translateY(-50%);
-    outline: none;
-  }
-  
-  /* Formulario de edición */
-  .edit-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .edit-form label {
-    font-weight: bold;
-    margin-bottom: 2px;
-  }
-  
-  .edit-form input,
-  .edit-form textarea {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .modal-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    margin-top: 10px;
-  }
-  
+  margin: 60px;
+}
+
+/* Overlay - fondo oscuro */
+.edit-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.video-list-container h1 {
+  text-align: center; /* Centra horizontalmente el texto */
+  font-size: 2.5rem; /* Tamaño del texto */
+  margin-bottom: 60px; /* Espaciado inferior */
+  color: #fff; /* Color blanco */
+  text-transform: uppercase; /* Convierte a mayúsculas */
+  position: relative; /* Posicionamiento relativo para personalizaciones futuras */
+  top: 0; /* Inicia desde el inicio */
+  margin-top: 60px;
+}
+
+.edit-modal {
+  position: relative;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 700px;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  outline: none;
+  color: rgb(161, 161, 161);
+  z-index: 1; /* Asegura que el contenido esté sobre el fondo */
+}
+
+.edit-modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #31313179; /* Fondo semitransparente */
+  backdrop-filter: blur(8px); /* Efecto de desenfoque */
+  border-radius: 8px;
+  z-index: -1; /* Coloca el fondo detrás del contenido */
+}
+
+
+/* Formulario de edición */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-form label {
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #cccccc;
+}
+
+.edit-form input,
+.edit-form textarea {
+  background-color: #000000c7;
+  color: #9e9e9e;
+  padding: 8px;
+  border: 1px solid #700101;
+  border-radius: 4px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}

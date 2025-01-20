@@ -5,6 +5,7 @@ import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firesto
 import Category from "../Category/Category";
 import Modal from "react-modal";
 import "./VideoList.css";
+import Button from "../Button/Button";
 
 Modal.setAppElement("#root");
 
@@ -126,74 +127,79 @@ function VideoList() {
 
       {/* Modal para editar videos */}
       <Modal
-        isOpen={isModalOpen}
-        onRequestClose={closeEditModal}
-        contentLabel="Editar Video"
-        className="edit-modal"
-        overlayClassName="edit-overlay"
-      >
-        <h2>Editar Video</h2>
-        {currentVideo && (
-          <form onSubmit={handleEditSubmit} className="edit-form">
-            {/* Nombre */}
-            <label>Nombre:</label>
-            <input
-              type="text"
-              value={currentVideo.name}
-              onChange={(e) =>
-                setCurrentVideo({ ...currentVideo, name: e.target.value })
-              }
-              required
-            />
+  isOpen={isModalOpen}
+  onRequestClose={closeEditModal}
+  contentLabel="Editar Video"
+  className="edit-modal"
+  overlayClassName="edit-overlay"
+>
+  <h2>Editar Video</h2>
+  {currentVideo && (
+    <form onSubmit={handleEditSubmit} className="edit-form">
+      {/* Nombre */}
+      <label>Nombre:</label>
+      <input
+        type="text"
+        value={currentVideo.name}
+        onChange={(e) =>
+          setCurrentVideo({ ...currentVideo, name: e.target.value })
+        }
+        required
+      />
 
-            {/* Descripción */}
-            <label>Descripción:</label>
-            <textarea
-              value={currentVideo.description}
-              onChange={(e) =>
-                setCurrentVideo({
-                  ...currentVideo,
-                  description: e.target.value,
-                })
-              }
-              required
-            />
+      {/* Descripción */}
+      <label>Descripción:</label>
+      <textarea
+        value={currentVideo.description}
+        onChange={(e) =>
+          setCurrentVideo({
+            ...currentVideo,
+            description: e.target.value,
+          })
+        }
+        required
+      />
 
-            {/* URL del Video */}
-            <label>URL del Video:</label>
-            <input
-              type="url"
-              value={currentVideo.videoUrl || ""}
-              onChange={(e) =>
-                setCurrentVideo({
-                  ...currentVideo,
-                  videoUrl: e.target.value,
-                })
-              }
-            />
+      {/* URL del Video */}
+      <label>URL del Video:</label>
+      <input
+        type="url"
+        value={currentVideo.videoUrl || ""}
+        onChange={(e) =>
+          setCurrentVideo({
+            ...currentVideo,
+            videoUrl: e.target.value,
+          })
+        }
+      />
 
-            {/* Imagen (thumbnailUrl) */}
-            <label>URL de la Imagen:</label>
-            <input
-              type="url"
-              value={currentVideo.thumbnailUrl || ""}
-              onChange={(e) =>
-                setCurrentVideo({
-                  ...currentVideo,
-                  thumbnailUrl: e.target.value,
-                })
-              }
-            />
+      {/* Imagen (thumbnailUrl) */}
+      <label>URL de la Imagen:</label>
+      <input
+        type="url"
+        value={currentVideo.thumbnailUrl || ""}
+        onChange={(e) =>
+          setCurrentVideo({
+            ...currentVideo,
+            thumbnailUrl: e.target.value,
+          })
+        }
+      />
 
-            <div className="modal-buttons">
-              <button type="submit">Guardar</button>
-              <button type="button" onClick={closeEditModal}>
-                Cancelar
-              </button>
-            </div>
-          </form>
-        )}
-      </Modal>
+      <div className="modal-buttons">
+        {/* Botón de Guardar */}
+        <Button type="submit" variant="primary">
+          Guardar
+        </Button>
+
+        {/* Botón de Cancelar */}
+        <Button type="button" variant="secondary" onClick={closeEditModal}>
+          Cancelar
+        </Button>
+      </div>
+    </form>
+  )}
+</Modal>
     </div>
   );
 }

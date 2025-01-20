@@ -2,11 +2,12 @@
 
 .category-section {
   max-width: 90%;
-  margin: 0 auto;
+  margin: 40px auto;
   margin-bottom: 20px;
   padding: 20px;
   border-radius: 10px;
   color: #fff;
+  overflow: hidden; 
 }
 
 /* ALURA HORROR */
@@ -30,19 +31,35 @@
   background-position: center;
 }
 
+.category-section.recomendado {
+  background-image: url('../../../public/assets/img/background-horror.png');
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 50px; /* Espacio adicional para evitar que quede pegada al footer */
+}
+
 /* Deja espacio entre tarjetas: */
 .slick-slide {
   display: flex; 
   justify-content: center;
   align-items: center;
-  padding: 0 10px; 
+  padding: 0 10px;
   box-sizing: border-box;
 }
 
 .slick-track {
   display: flex !important;
   align-items: center;
+  transition: transform 0.3s ease !important;
 }
+
+.category-section h2 {
+  text-align: center; /* Centra horizontalmente el texto */
+  font-size: 2rem; /* Ajusta el tamaño del texto */
+  margin-bottom: 20px; /* Espaciado inferior */
+  color: #fff; /* Color del texto */
+}
+
 
 .category-card {
   width: 220px;

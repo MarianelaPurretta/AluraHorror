@@ -1,0 +1,30 @@
+/* Estilo base */
+.btn {
+    padding: 10px 15px;
+    border: 1px solid #830202;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Variantes */
+  .btn-primary {
+    background-color: #830202;
+    color: #c2c1c1;
+  }
+  
+  .btn-primary:hover {
+    background-color: #080808;
+  }
+  
+  .btn-danger {
+    background-color: #0f0f0fb2;
+    color: #b60303;
+  }
+  
+  .btn-danger:hover {
+    background-color: #530009;
+    color:#d8d6d6
+  }
+  
